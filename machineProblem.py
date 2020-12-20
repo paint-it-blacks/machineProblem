@@ -5,6 +5,11 @@ import tkinter
 from tkinter import messagebox
 from tkinter import font
 
+def show_frame(self, cont):
+
+    frame = self.frames[cont]
+    frame.tkraise()
+
 
 root = tkinter.Tk()
 root.title(u"Who Wants to Be A Millionaire.")
@@ -18,7 +23,7 @@ Static1.pack()
 win = tkinter.Toplevel()
 frame = tkinter.Frame(master=win).grid(row=1, column=1)
 
-button1 = tkinter.Button(master=frame, text=u'PLAY', width=30,                      command=lambda: controller.show_frame(yourName))
+button1 = tkinter.Button(master=frame, text=u'PLAY', width=30, command=lambda: show_frame(yourName))
 button1.pack()
 
 
@@ -34,5 +39,16 @@ Static2 = tkinter.Label(text=u'v0.0.0.1', font=font.Font(size=12))
 #Static2.grid(pady=3)
 Static2.place(relx=0, rely=0.95)
 
+class yourName(tkinter.Frame):
+
+    def __init__(self, parent, controller):
+        tkinter.Frame.__init__(self, parent)
+        label=tkinter.Label(self, text="What's Your Name?", font=font.Font(size=37))
+        
+        button1 = tkinter.Button(self, text="Start Game", command=root.quit)
+        button1.pack()
+        
+        button2 = tkinter.Button(self, text="Cancel", command=lambda: controller.show_frame(master=win))
+        button2.pack()
 
 root.mainloop()
