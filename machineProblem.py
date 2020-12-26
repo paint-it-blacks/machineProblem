@@ -1,54 +1,85 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
+
+# unified interface introduced in branch issues/framework
+
+
 import sys
 import tkinter
 from tkinter import messagebox
 from tkinter import font
 
-def show_frame(self, cont):
 
-    frame = self.frames[cont]
-    frame.tkraise()
+LARGE_FONT= ("Verdana", 12)
 
 
-root = tkinter.Tk()
-root.title(u"Who Wants to Be A Millionaire.")
-root.geometry("1280x720")
+class SeaofBTCapp(tkinter.Tk):
 
-#ラベル
-Static1 = tkinter.Label(text=u'Who Wants to Be A Millionaire.', font=font.Font(size=37))
-Static1.pack()
+    def __init__(self, *args, **kwargs):
+        
+        tkinter.Tk.__init__(self, *args, **kwargs)
+        container = tkinter.Frame(self)
+
+        container.pack(side="top", fill="both", expand = True)
+
+        container.grid_rowconfigure(0, weight=1)
+        container.grid_columnconfigure(0, weight=1)
+
+        self.frames = {}
+
+        for F in (StartPage, PageOne):
+
+            frame = F(container, self)
+
+            self.frames[F] = frame
+
+            frame.grid(row=0, column=0, sticky="nsew")
+
+        self.show_frame(StartPage)
+
+    def show_frame(self, cont):
+
+        frame = self.frames[cont]
+        frame.tkraise()
 
 
-win = tkinter.Toplevel()
-frame = tkinter.Frame(master=win).grid(row=1, column=1)
+class StartPage(tkinter.Frame):
 
-button1 = tkinter.Button(master=frame, text=u'PLAY', width=30, command=lambda: show_frame(yourName))
-button1.pack()
+    def __init__(self, parent, controller):
+        tkinter.Frame.__init__(self,parent)
+
+        # snippets of earlier code that came unified
+        Static1 = tkinter.Label(self, text=u'Who Wants to Be A Millionaire.', font=font.Font(size=37))
+        Static1.pack()
 
 
-button2 = tkinter.Button(root, text=u'HIGHSCORES', width=30, command=root.quit)
-button2.pack()
+        #win = tkinter.Toplevel()
+        #frame = tkinter.Frame(master=win).grid(row=1, column=1)
+
+        button1 = tkinter.Button(self, text=u'PLAY', width=30, command=lambda: controller.show_frame(PageOne))
+        button1.pack()
 
 
-button3 = tkinter.Button(root, text=u'QUIT GAME', width=30, command=root.quit)
-button3.pack()
+        button2 = tkinter.Button(self, text=u'HIGHSCORES', width=30, command=controller.quit)
+        button2.pack()
 
-#ラベル
-Static2 = tkinter.Label(text=u'v0.0.0.1', font=font.Font(size=12))
-#Static2.grid(pady=3)
-Static2.place(relx=0, rely=0.95)
 
-class yourName(tkinter.Frame):
+        button3 = tkinter.Button(self, text=u'QUIT GAME', width=30, command=controller.quit)
+        button3.pack()
+
+        Static2 = tkinter.Label(text=u'v0.0.0.1', font=font.Font(size=12))
+        Static2.place(relx=0, rely=0.95)
+
+
+class PageOne(tkinter.Frame):
 
     def __init__(self, parent, controller):
         tkinter.Frame.__init__(self, parent)
-        label=tkinter.Label(self, text="What's Your Name?", font=font.Font(size=37))
-        
-        button1 = tkinter.Button(self, text="Start Game", command=root.quit)
-        button1.pack()
-        
-        button2 = tkinter.Button(self, text="Cancel", command=lambda: controller.show_frame(master=win))
-        button2.pack()
+        label = tkinter.Label(self, text="Page One!!!", font=LARGE_FONT)
+        label.pack()
 
+
+root = SeaofBTCapp()
+root.title(u"Who Wants to Be A Millionaire.")
+root.geometry("1280x720")
 root.mainloop()
