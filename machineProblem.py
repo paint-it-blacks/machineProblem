@@ -67,7 +67,7 @@ class StartPage(tkinter.Frame):
         button3.pack()
 
         #ラベル
-        Static2 = tkinter.Label(self, text=u'v0.0.0.1', font=font.Font(size=12))        #Static2.grid(pady=3)
+        Static2 = tkinter.Label(self, text=u'v0.0.0.1', font=font.Font(size=12))
         Static2.place(relx=0, rely=0.95)
 
 class YourName(tkinter.Frame):
