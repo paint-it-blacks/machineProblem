@@ -24,7 +24,7 @@ class SeaofBTCapp(tkinter.Tk):
 
         self.frames = {}
 
-        for F in (StartPage, yourName, Highscores, EasyLevel, FirstQuestion):
+        for F in (StartPage, YourName, Highscores, EasyLevel, ModerateLevel, HardLevel, FirstQuestion, SecondQuestion, Correct, Lifeline, YouLose, Continue, Congratulations):
 
             frame = F(container, self)
 
@@ -40,6 +40,11 @@ class SeaofBTCapp(tkinter.Tk):
         frame.tkraise()
         if cont == EasyLevel:
             self.after(500, lambda:self.show_frame(FirstQuestion))
+        if cont == ModerateLevel:
+            self.after(500, lambda:self.show_frame(FirstQuestion))
+        if cont == HardLevel:
+            self.after(500, lambda:self.show_frame(FirstQuestion))
+
 
 class StartPage(tkinter.Frame):
 
@@ -50,7 +55,7 @@ class StartPage(tkinter.Frame):
         Static1 = tkinter.Label(self, text=u'Who Wants to Be A Millionaire.', font=font.Font(size=75))
         Static1.pack()
 
-        button1 = tkinter.Button(self, text=u'PLAY', height=3, width=20, font=LARGE_FONT, command=lambda: controller.show_frame(yourName))
+        button1 = tkinter.Button(self, text=u'PLAY', height=3, width=20, font=LARGE_FONT, command=lambda: controller.show_frame(YourName))
         button1.pack()
 
 
@@ -62,11 +67,10 @@ class StartPage(tkinter.Frame):
         button3.pack()
 
         #ラベル
-        Static2 = tkinter.Label(text=u'v0.0.0.1', font=font.Font(size=12))
-        #Static2.grid(pady=3)
+        Static2 = tkinter.Label(self, text=u'v0.0.0.1', font=font.Font(size=12))        #Static2.grid(pady=3)
         Static2.place(relx=0, rely=0.95)
 
-class yourName(tkinter.Frame):
+class YourName(tkinter.Frame):
 
     def __init__(self, parent, controller):
         tkinter.Frame.__init__(self, parent)
@@ -74,7 +78,7 @@ class yourName(tkinter.Frame):
         label.pack()
         
         #エントリー
-        EditBox = tkinter.Entry(width=50)
+        EditBox = tkinter.Entry(self, width=50)
         EditBox.insert(tkinter.END,"Insert Name")
         EditBox.pack()
         
@@ -102,7 +106,19 @@ class EasyLevel(tkinter.Frame):
         label=tkinter.Label(self, text="EASY \n LEVEL", font=font.Font(size=100))
         label.pack()
         
+class ModerateLevel(tkinter.Frame):
 
+    def __init__(self, parent, controller):
+        tkinter.Frame.__init__(self, parent)
+        label=tkinter.Label(self, text="MODERATE \n LEVEL", font=font.Font(size=100))
+        label.pack()
+
+class HardLevel(tkinter.Frame):
+
+    def __init__(self, parent, controller):
+        tkinter.Frame.__init__(self, parent)
+        label=tkinter.Label(self, text="HARD \n LEVEL", font=font.Font(size=100))
+        label.pack()
         
 class FirstQuestion(tkinter.Frame):
 
@@ -110,9 +126,67 @@ class FirstQuestion(tkinter.Frame):
         tkinter.Frame.__init__(self, parent)
 
         button1=tkinter.Button(self, width=10, text="QUIT", command=lambda: controller.show_frame(StartPage))
+        button1.place(relx=0, rely=0)
+
+        button2=tkinter.Button(self, height=5, width=20, text="ANSWER", command=lambda: controller.show_frame(Correct))
+        button2.pack()
+        
+        button3=tkinter.Button(self, height=5, width=20, text="USE LIFELINE", command=lambda: controller.show_frame(Lifeline))
+        button3.pack()
+        
+class SecondQuestion(tkinter.Frame):
+
+    def __init__(self, parent, controller):
+        tkinter.Frame.__init__(self, parent)
+
+        button1=tkinter.Button(self, width=10, text="QUIT", command=lambda: controller.show_frame(StartPage))
+        button1.place(relx=0, rely=0)
+
+        button2=tkinter.Button(self, height=5, width=20, text="ANSWER", command=lambda: controller.show_frame(Correct))
+        button2.pack()
+        
+        button3=tkinter.Button(self, height=5, width=20, text="USE LIFELINE", command=lambda: controller.show_frame(Lifeline))
+        button3.pack()
+
+        button4=tkinter.Button(self, height=5, width=20, text="WALK AWAY", command=lambda: controller.show_frame(Congratulations))
+        button4.pack()
+
+
+class Correct(tkinter.Frame):
+    def __init__(self, parent, controller):
+        tkinter.Frame.__init__(self, parent)
+        label=tkinter.Label(self, text="CORRECT!", font=font.Font(size=100))
+        label.pack()
+
+class Lifeline(tkinter.Frame):
+    def __init__(self, parent, controller):
+        tkinter.Frame.__init__(self, parent)
+        label=tkinter.Label(self, text="LIFELINE", font=font.Font(size=75))
+        label.pack()
+
+class YouLose(tkinter.Frame):
+    def __init__(self, parent, controller):
+        tkinter.Frame.__init__(self, parent)
+        label=tkinter.Label(self, text="YOU LOSE!", font=font.Font(size=100))
+        label.pack()
+
+class Continue(tkinter.Frame):
+    def __init__(self, parent, controller):
+        tkinter.Frame.__init__(self, parent)
+
+        button1=tkinter.Button(self, height=5, width=20, text="CONTINUE", command=lambda: controller.show_frame(SecondQuestion))
         button1.pack()
-        
-        
+ 
+        button2=tkinter.Button(self, height=5, width=20, text="WALK AWAY", command=lambda: controller.show_frame(Congratulations))
+        button2.pack()
+
+
+class Congratulations(tkinter.Frame):
+    def __init__(self, parent, controller):
+        tkinter.Frame.__init__(self, parent)
+        label=tkinter.Label(self, text="CONGRATULATIONS!", font=font.Font(size=100))
+        label.pack()
+
 root = SeaofBTCapp()
 root.title(u"Who Wants to Be A Millionaire.")
 root.geometry("1280x720")
