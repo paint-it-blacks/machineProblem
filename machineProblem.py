@@ -24,7 +24,7 @@ class SeaofBTCapp(tkinter.Tk):
 
         self.frames = {}
 
-        for F in (StartPage, yourName, highscores):
+        for F in (StartPage, yourName, Highscores, EasyLevel, FirstQuestion):
 
             frame = F(container, self)
 
@@ -38,6 +38,8 @@ class SeaofBTCapp(tkinter.Tk):
 
         frame = self.frames[cont]
         frame.tkraise()
+        if cont == EasyLevel:
+            self.after(500, lambda:self.show_frame(FirstQuestion))
 
 class StartPage(tkinter.Frame):
 
@@ -52,7 +54,7 @@ class StartPage(tkinter.Frame):
         button1.pack()
 
 
-        button2 = tkinter.Button(self, text=u'HIGHSCORES', height=3, width=20, font=LARGE_FONT, command=lambda: controller.show_frame(highscores))
+        button2 = tkinter.Button(self, text=u'HIGHSCORES', height=3, width=20, font=LARGE_FONT, command=lambda: controller.show_frame(Highscores))
         button2.pack()
 
 
@@ -83,7 +85,7 @@ class yourName(tkinter.Frame):
         button2.pack()
         
         
-class highscores(tkinter.Frame):
+class Highscores(tkinter.Frame):
 
     def __init__(self, parent, controller):
         tkinter.Frame.__init__(self, parent)
@@ -100,18 +102,14 @@ class EasyLevel(tkinter.Frame):
         label=tkinter.Label(self, text="EASY \n LEVEL", font=font.Font(size=100))
         label.pack()
         
-    def show_frame(self, cont):
-        frame = self.frames[cont]
-        frame.tkraise()
 
-        if cont == FirstQuestion:
-            self.after(500, self.show_frame(FirstQuestion))
         
 class FirstQuestion(tkinter.Frame):
 
     def __init__(self, parent, controller):
+        tkinter.Frame.__init__(self, parent)
 
-        button1=tkinter.Button(self, width=10, text="QUIT", command=controller.quit)
+        button1=tkinter.Button(self, width=10, text="QUIT", command=lambda: controller.show_frame(StartPage))
         button1.pack()
         
         
