@@ -24,7 +24,7 @@ class SeaofBTCapp(tkinter.Tk):
 
         self.frames = {}
 
-        for F in (StartPage, YourName, Highscores, EasyLevel, ModerateLevel, HardLevel, FirstQuestion, SecondQuestion, Correct, Lifeline, YouLose, Continue, Congratulations):
+        for F in (StartPage, YourName, Highscores, EasyLevel, ModerateLevel, HardLevel, FirstQuestion, SecondQuestion, Correct, Lifeline, CallAFriend, Message, YouLose, Continue, Congratulations):
 
             frame = F(container, self)
 
@@ -155,20 +155,68 @@ class SecondQuestion(tkinter.Frame):
 class Correct(tkinter.Frame):
     def __init__(self, parent, controller):
         tkinter.Frame.__init__(self, parent)
-        label=tkinter.Label(self, text="CORRECT!", font=font.Font(size=100))
-        label.pack()
+        label1=tkinter.Label(self, text="CORRECT!", font=font.Font(size=100))
+        label1.pack()
+        
+        label2=tkinter.Label(self, text="YOU EARNED", font=font.Font(size=75))
+        label2.pack()
+
+        label3=tkinter.Label(self, text="P ", font=font.Font(size=100))
+        label3.pack()
 
 class Lifeline(tkinter.Frame):
     def __init__(self, parent, controller):
         tkinter.Frame.__init__(self, parent)
         label=tkinter.Label(self, text="LIFELINE", font=font.Font(size=75))
         label.pack()
+        
+        button1=tkinter.Button(self, height=5, width=20, text="CALL A FRIEND", command=lambda: controller.show_frame(CallAFriend))
+        button1.pack()
+ 
+        button2=tkinter.Button(self, height=5, width=20, text="50/50", command=lambda: controller.show_frame(FirstQuestion))
+        button2.pack()
+
+class CallAFriend(tkinter.Frame):
+    def __init__(self, parent, controller):
+        tkinter.Frame.__init__(self, parent)
+        label1=tkinter.Label(self, text="CALL A FRIEND", font=font.Font(size=100))
+        label1.pack()
+
+        label2=tkinter.Label(self, text="WISE FRIEND", font=font.Font(size=50))
+        label2.pack()
+
+        label3=tkinter.Label(self, text="UNSURE FRIEND", font=font.Font(size=50))
+        label3.pack()
+        
+        label4=tkinter.Label(self, text="ARROGANT FRIEND", font=font.Font(size=50))
+        label4.pack()
+
+        button1=tkinter.Button(self, height=5, width=20, text="___ FRIEND", command=lambda: controller.show_frame(Message))
+        button1.pack()
+        
+class Message(tkinter.Frame):
+    def __init__(self, parent, controller):
+        tkinter.Frame.__init__(self, parent)
+        label=tkinter.Label(self, text="A MESSAGE FROM YOUR ___ FRIEND", font=font.Font(size=50))
+        label.pack()
+        
+        button1=tkinter.Button(self, height=5, width=20, text="BACK TO QUESTION", command=lambda: controller.show_frame(FirstQuestion))
+        button1.pack()
 
 class YouLose(tkinter.Frame):
     def __init__(self, parent, controller):
         tkinter.Frame.__init__(self, parent)
-        label=tkinter.Label(self, text="YOU LOSE!", font=font.Font(size=100))
-        label.pack()
+        label1=tkinter.Label(self, text="YOU LOSE!", font=font.Font(size=100))
+        label1.pack()
+        
+        label2=tkinter.Label(self, text="EARNINGS: ", font=font.Font(size=75))
+        label2.pack()
+
+        label3=tkinter.Label(self, text="P ", font=font.Font(size=100))
+        label3.pack()
+
+        button1=tkinter.Button(self, height=5, width=20, text="HOME", command=lambda: controller.show_frame(StartPage))
+        button1.pack()
 
 class Continue(tkinter.Frame):
     def __init__(self, parent, controller):
@@ -184,8 +232,17 @@ class Continue(tkinter.Frame):
 class Congratulations(tkinter.Frame):
     def __init__(self, parent, controller):
         tkinter.Frame.__init__(self, parent)
-        label=tkinter.Label(self, text="CONGRATULATIONS!", font=font.Font(size=100))
-        label.pack()
+        label1=tkinter.Label(self, text="CONGRATULATIONS!", font=font.Font(size=100))
+        label1.pack()
+        
+        label2=tkinter.Label(self, text="YOU EARNED: ", font=font.Font(size=75))
+        label2.pack()
+        
+        label3=tkinter.Label(self, text="P ", font=font.Font(size=100))
+        label3.pack()
+
+        button1=tkinter.Button(self, height=5, width=20, text="HOME", command=lambda: controller.show_frame(StartPage))
+        button1.pack()
 
 root = SeaofBTCapp()
 root.title(u"Who Wants to Be A Millionaire.")
