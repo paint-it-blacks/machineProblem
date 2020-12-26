@@ -134,6 +134,20 @@ class FirstQuestion(tkinter.Frame):
         button3=tkinter.Button(self, height=5, width=20, text="USE LIFELINE", command=lambda: controller.show_frame(Lifeline))
         button3.pack()
         
+class FinalQuestion(tkinter.Frame):
+
+    def __init__(self, parent, controller):
+        tkinter.Frame.__init__(self, parent)
+
+        button1=tkinter.Button(self, width=10, text="QUIT", command=lambda: controller.show_frame(StartPage))
+        button1.place(relx=0, rely=0)
+
+        button2=tkinter.Button(self, height=5, width=20, text="ANSWER", command=lambda: controller.show_frame(Correct))
+        button2.pack()
+        
+        button3=tkinter.Button(self, height=5, width=20, text="WALK AWAY", command=lambda: controller.show_frame(Congratulations))
+        button3.pack()
+
 class SecondQuestion(tkinter.Frame):
 
     def __init__(self, parent, controller):
@@ -243,6 +257,18 @@ class Congratulations(tkinter.Frame):
 
         button1=tkinter.Button(self, height=5, width=20, text="HOME", command=lambda: controller.show_frame(StartPage))
         button1.pack()
+        
+class finalAnswer(tkinter.Frame):
+    def __init__(self, parent, controller):
+        tkinter.Frame.__init__(self, parent)
+        label1=tkinter.Label(self, text="IS THIS YOUR \n FINAL ANSWER?", font=font.Font(size=75))
+        label1.pack()
+        
+        button1=tkinter.Button(self, height=5, width=20, text="YES", command=lambda: controller.show_frame(Correct))
+        button1.pack()
+ 
+        button2=tkinter.Button(self, height=5, width=20, text="NO", command=lambda: controller.show_frame(FirstQuestion))
+        button2.pack()
 
 root = SeaofBTCapp()
 root.title(u"Who Wants to Be A Millionaire.")
