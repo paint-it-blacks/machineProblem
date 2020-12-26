@@ -76,7 +76,7 @@ class yourName(tkinter.Frame):
         EditBox.insert(tkinter.END,"Insert Name")
         EditBox.pack()
         
-        button1 = tkinter.Button(self, height=3, width=20, font=LARGE_FONT, text="Start Game", command=controller.quit)
+        button1 = tkinter.Button(self, height=3, width=20, font=LARGE_FONT, text="Start Game", command=lambda: controller.show_frame(EasyLevel))
         button1.pack()
         
         button2 = tkinter.Button(self, height=3, width=20, font=LARGE_FONT, text="Cancel", command=lambda: controller.show_frame(StartPage))
@@ -92,6 +92,28 @@ class highscores(tkinter.Frame):
         
         button1 = tkinter.Button(self, height=3, width=20, font=LARGE_FONT, text="Back to Game", command=lambda: controller.show_frame(StartPage))
         button1.pack()
+        
+class EasyLevel(tkinter.Frame):
+
+    def __init__(self, parent, controller):
+        tkinter.Frame.__init__(self, parent)
+        label=tkinter.Label(self, text="EASY \n LEVEL", font=font.Font(size=100))
+        label.pack()
+        
+    def show_frame(self, cont):
+        frame = self.frames[cont]
+        frame.tkraise()
+
+        if cont == FirstQuestion:
+            self.after(500, self.show_frame(FirstQuestion))
+        
+class FirstQuestion(tkinter.Frame):
+
+    def __init__(self, parent, controller):
+
+        button1=tkinter.Button(self, width=10, text="QUIT", command=controller.quit)
+        button1.pack()
+        
         
 root = SeaofBTCapp()
 root.title(u"Who Wants to Be A Millionaire.")
