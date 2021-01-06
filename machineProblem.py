@@ -5,6 +5,7 @@
 
 import sys
 import tkinter
+import pandas as pd
 from tkinter import messagebox
 from tkinter import font
 
@@ -24,7 +25,7 @@ class SeaofBTCapp(tkinter.Tk):
 
         self.frames = {}
 
-        for F in (StartPage, YourName, Highscores, EasyLevel, ModerateLevel, HardLevel, FirstQuestion, SecondQuestion, Correct, Lifeline, CallAFriend, Message, YouLose, Continue, Congratulations):
+        for F in (StartPage, YourName, Highscores, EasyLevel, ModerateLevel, HardLevel, FirstQuestion, SecondQuestion, Correct, Lifeline, CallAFriend, Message, YouLose, Continue, FinalAnswer, FinalQuestion, Congratulations):
 
             frame = F(container, self)
 
@@ -258,7 +259,7 @@ class Congratulations(tkinter.Frame):
         button1=tkinter.Button(self, height=5, width=20, text="HOME", command=lambda: controller.show_frame(StartPage))
         button1.pack()
         
-class finalAnswer(tkinter.Frame):
+class FinalAnswer(tkinter.Frame):
     def __init__(self, parent, controller):
         tkinter.Frame.__init__(self, parent)
         label1=tkinter.Label(self, text="IS THIS YOUR \n FINAL ANSWER?", font=font.Font(size=75))
