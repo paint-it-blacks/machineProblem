@@ -126,6 +126,12 @@ class FirstQuestion(tkinter.Frame):
     def __init__(self, parent, controller):
         tkinter.Frame.__init__(self, parent)
         
+        f = None
+        df = pd.read_csv('questionBank.csv')
+
+        print(df)
+
+
         #label=tkinter.Label(self, text="", font=font.Font(size=25))
         
         button1=tkinter.Button(self, width=10, text="QUIT", command=lambda: controller.show_frame(StartPage))
