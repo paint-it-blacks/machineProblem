@@ -12,19 +12,6 @@ from tkinter import font
 
 LARGE_FONT= ("Verdana", 12)
 
-with open("questionBank.csv", newline="")as file:
-    reader = csv.reader(file)
-
-    r=0
-    for col in reader:
-        c=0
-        for row in col:
-            label=tkinter.Label(root, width=10, height=2, text=row, relief=tkinter.RIDGE)
-            label.grid(row=r, column=c)
-            c += 1
-        r += 1
-
-
 class SeaofBTCapp(tkinter.Tk):
 
     def __init__(self, *args, **kwargs):
@@ -289,8 +276,22 @@ class FinalAnswer(tkinter.Frame):
  
         button2=tkinter.Button(self, height=5, width=20, text="NO", command=lambda: controller.show_frame(FirstQuestion))
         button2.pack()
-
+        
 root = SeaofBTCapp()
+
+with open("questionBank.csv", newline="")as file:
+    reader = csv.reader(file)
+
+    r=0
+    for col in reader:
+        c=0
+        for row in col:
+            label=tkinter.Label(root, width=10, height=2, text=row, relief=tkinter.RIDGE)
+            label.grid(row=r, column=c)
+            c += 1
+        r += 1
+
+
 root.title(u"Who Wants to Be A Millionaire.")
 root.geometry("1280x720")
 root.mainloop()
