@@ -1,0 +1,12 @@
+# Easy
+
+0,What sport does Cristiano Ronaldo play?,Soccer,Football,Basketball,Baseball
+1,What does Na stand for on the periodic table?,Sodium,Nothing at all,Nandemonaiya,Salt
+2,What is the name of the actor who played the role of Jack in the movie Titanic?,Leonardo Da Vinci,Leonardo Donatello,Leonardo DiCaprio,Leonard Descartes
+3,Which fictional city is the home of Batman?,Stark City,Gotham city,This City,Burnham City
+4,What is next to Mercury?,Earth,Mars,Jupiter,Venus
+5,"Harry, Niall, Louis, Liam, and Zayn were in a band. What was it called?",One Direction,Two Direction,No Direction,Plenty of Directions
+6,Who is the author of the Harry Potter series?,J.K. Rolling,J.K. Rowling,L.M. Standing,J.K. Growling
+7,What is the name of Han Solo's ship?,Decade Eagle,Yearly Foxx,Millennium Falcon,Monthly Stork
+8,What is the name of the character that  Johnny Depp plays in Pirates of the Caribbean?,Captain Jack Sorrow,Captain Jack Sparrow,Captain Rosy Sparrow,Captain Jack Swellow
+9,Which bird is often associated with delivering babies?,Stork,Dove,Eagle,Falcon
