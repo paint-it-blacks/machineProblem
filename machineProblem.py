@@ -82,7 +82,7 @@ class YourName(tkinter.Frame):
         EditBox.insert(tkinter.END,"Insert Name")
         EditBox.pack()
         
-        button1 = tkinter.Button(self, height=3, width=20, font=LARGE_FONT, text="Start Game", command=lambda: controller.show_frame(EasyLevel))
+        button1 = tkinter.Button(self, height=3, width=20, font=LARGE_FONT, text="Start Game", command=lambda: [controller.show_frame(EasyLevel),  print("%s is playing" % (EditBox.get()))])
         button1.pack()
         
         button2 = tkinter.Button(self, height=3, width=20, font=LARGE_FONT, text="Cancel", command=lambda: controller.show_frame(StartPage))
